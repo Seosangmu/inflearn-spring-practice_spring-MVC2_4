@@ -160,8 +160,10 @@ public class ValidationItemControllerV2 {
         if (!StringUtils.hasText(item.getItemName())) {
             bindingResult.rejectValue("itemName", "required");
         }
-        if (item.getPrice() == null || item.getPrice() < 1000 || item.getPrice() > 1000000) {
-            bindingResult.rejectValue("price", "range", new Object[]{1000, 1000000}, null);
+        if (!bindingResult.hasFieldErrors("price")) {
+            if (item.getPrice() == null || item.getPrice() < 1000 || item.getPrice() > 1000000) {
+                bindingResult.rejectValue("price", "range", new Object[]{1000, 1000000}, null);
+            }
         }
         if (item.getQuantity() == null || item.getQuantity() > 9999) {
             bindingResult.rejectValue("quantity", "max", new Object[]{9999}, null);
