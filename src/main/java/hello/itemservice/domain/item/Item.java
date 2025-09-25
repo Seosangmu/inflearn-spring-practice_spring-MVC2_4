@@ -8,6 +8,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Data
+//@ScriptAssert(lang = "javascript", script = "_this.price * _this.quantity >= 10000", message = "가격*수량은 10000이상 이여야합니다.") // 효율적이지 않음
 public class Item {
 
     private Long id;
